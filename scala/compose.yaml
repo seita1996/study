@@ -1,0 +1,6 @@
+version: '3'
+services:
+  scala:
+    image: sbtscala/scala-sbt:eclipse-temurin-focal-17.0.10_7_1.9.9_3.4.0
+    tty: true
+    volumes: [".:/root"]

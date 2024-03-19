@@ -1,0 +1,6 @@
+.bsp
+.cache
+.sbt
+project
+target
+.scala_history
