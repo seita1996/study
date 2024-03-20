@@ -2,6 +2,8 @@
 
 ## GHCi
 
+https://ghcguide.haskell.jp/8.2.2/users_guide/ghci.html
+
 ```
 # ghci
 ```
