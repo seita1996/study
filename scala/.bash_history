@@ -7,3 +7,10 @@ sbt console
 cd sandbox
 sbt console
 exit
+cd sandbox/
+sbt console
+sbt console
+sbt console
+sbt console
+sbt console
+exit
