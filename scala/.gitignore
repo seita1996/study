@@ -5,3 +5,4 @@ project
 target
 .scala_history
 .dotty_history
+.bash_history
