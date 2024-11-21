@@ -1,0 +1,43 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      neverthrow:
+        specifier: ^8.1.1
+        version: 8.1.1
+      typescript:
+        specifier: ^5.6.2
+        version: 5.6.3
+
+packages:
+
+  '@rollup/rollup-linux-x64-gnu@4.27.2':
+    resolution: {integrity: sha512-PaW2DY5Tan+IFvNJGHDmUrORadbe/Ceh8tQxi8cmdQVCCYsLoQo2cuaSj+AU+YRX8M4ivS2vJ9UGaxfuNN7gmg==}
+    cpu: [x64]
+    os: [linux]
+
+  neverthrow@8.1.1:
+    resolution: {integrity: sha512-DpbZ/UDI0B+TxJB1JysXSfi1++3YK2xLBqQLTlRN0b4zxlZ2MoiB+dKKV8dMRzt1fAFjRKDknXOVJgpl+a4Amw==}
+    engines: {node: '>=18'}
+
+  typescript@5.6.3:
+    resolution: {integrity: sha512-hjcS1mhfuyi4WW8IWtjP7brDrG2cuDZukyrYrSauoXGNgx0S7zceP07adYkJycEr56BOUTNPzbInooiN3fn1qw==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
+snapshots:
+
+  '@rollup/rollup-linux-x64-gnu@4.27.2':
+    optional: true
+
+  neverthrow@8.1.1:
+    optionalDependencies:
+      '@rollup/rollup-linux-x64-gnu': 4.27.2
+
+  typescript@5.6.3: {}
