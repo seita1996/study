@@ -4,7 +4,7 @@ type User = { id: number, name: string }
 type Post = { id: number, userId: number, title: string }
 type Comment = { id: number, postId: number, content: string }
 
-const users =
+const getUsers =
   (): Result<User[], Error> => {
     return fromThrowable(
       () => ([
@@ -16,7 +16,7 @@ const users =
     )()
   }
 
-const posts =
+const getPosts =
   (): Result<Post[], Error> => {
     return fromThrowable(
       () => ([
@@ -28,7 +28,7 @@ const posts =
     )()
   }
 
-const comments =
+const getComments =
   (): Result<Comment[], Error> => {
     return fromThrowable(
       () => ([
@@ -41,19 +41,19 @@ const comments =
     )()
   }
 
-type UserPostCommentCount = {
+type UserAggregate = {
   postCount: number,
   commentCount: number
 } & User;
 
 // ユーザーごとにpost数とcomment数を集計する（andThenを利用）
 const userPostCommentCount =
-  (): Result<UserPostCommentCount[], Error> => {
-    return users().andThen(
+  (): Result<UserAggregate[], Error> => {
+    return getUsers().andThen(
       users => {
-        return posts().andThen(
+        return getPosts().andThen(
           posts => {
-            return comments().map(
+            return getComments().map(
               comments => {
                 return users.map(
                   user => {
@@ -80,19 +80,19 @@ const userPostCommentCount =
 
 // ユーザーごとにpost数とcomment数を集計する（safeTryを利用）
 const userPostCommentCountSafeTry =
-  (): Result<UserPostCommentCount[], Error> => {
+  (): Result<UserAggregate[], Error> => {
     return safeTry(function*() {
-      const userList = yield* users()
-      const postList = yield* posts()
-      const commentList = yield* comments()
-      return ok(userList.map(
+      const users = yield* getUsers()
+      const posts = yield* getPosts()
+      const comments = yield* getComments()
+      return ok(users.map(
         user => {
-          const postCount = postList.filter(
+          const postCount = posts.filter(
             post => post.userId === user.id
           ).length
-          const commentCount = commentList.filter(
+          const commentCount = comments.filter(
             comment => {
-              return postList.find(
+              return posts.find(
                 post => post.userId === user.id && post.id === comment.postId
               )
             }
